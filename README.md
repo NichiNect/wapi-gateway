@@ -40,24 +40,22 @@ wapi-gateway/
 │   ├── app.ts                      # Fastify app factory
 │   ├── config/
 │   │   └── env.ts                  # Environment config & validation
-│   ├── plugins/
-│   │   ├── whatsapp.plugin.ts      # WhatsApp service plugin (singleton)
-│   │   ├── telegram.plugin.ts      # Telegram notification plugin
-│   │   ├── auth.plugin.ts          # Bearer token auth
-│   │   └── cors.plugin.ts          # CORS config
+│   ├── controllers/
+│   │   ├── health.controller.ts    # Health endpoint handler
+│   │   ├── status.controller.ts    # Status nomor handler
+│   │   ├── message.controller.ts   # Send text message handler
+│   │   └── media.controller.ts     # Media upload & URL handler
+│   ├── hooks/
+│   │   └── auth.hook.ts            # preHandler Bearer auth check
+│   ├── routes/
+│   │   ├── api.ts                  # Register semua route /api + auth hook
+│   │   └── health.route.ts         # GET /health
 │   ├── services/
 │   │   ├── whatsapp.service.ts     # Core WhatsApp logic (Baileys)
 │   │   └── telegram.service.ts     # Telegram Bot API client
-│   ├── routes/
-│   │   ├── health.route.ts         # GET /health
-│   │   ├── status.route.ts         # GET /api/status/:number
-│   │   ├── message.route.ts        # POST /api/message
-│   │   └── media.route.ts          # POST /api/media & /api/media-url
-│   ├── hooks/
-│   │   └── auth.hook.ts            # preHandler Bearer auth check
 │   └── types/
 │       ├── env.d.ts                # Env type declarations
-│       └── message.types.ts        # Request/Response types
+│       └── fastify.d.ts            # Fastify instance decoration types
 ├── auth/                           # (gitignored) WhatsApp session
 ├── .env.example
 ├── .gitignore
@@ -65,7 +63,6 @@ wapi-gateway/
 ├── tsconfig.json
 └── README.md
 ```
-
 ---
 
 ## ⚙️ Setup & Installation
@@ -148,11 +145,8 @@ GET /health
   "success": true,
   "data": {
     "status": "connected",
-    "uptime": 3600,
-    "whatsapp": {
-      "connected": true,
-      "user": "6281234567890"
-    }
+    "user": "6281234567890:1@s.whatsapp.net",
+    "uptime": 3600
   }
 }
 ```
@@ -285,7 +279,7 @@ Authorization: Bearer your-api-key-here
 ```
 
 - Semua endpoint di bawah `/api/*` memerlukan autentikasi
-- Endpoint `GET /health` dan `GET /` TIDAK memerlukan autentikasi
+- Endpoint `GET /health` TIDAK memerlukan autentikasi
 - API key dikonfigurasi via environment variable `API_KEY`
 
 ---

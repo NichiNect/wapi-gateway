@@ -1,15 +1,8 @@
 import type { FastifyPluginAsync } from 'fastify'
+import { healthController } from '../controllers/health.controller.js'
 
 const healthRoute: FastifyPluginAsync = async (app) => {
-  app.get('/health', async () => {
-    return {
-      success: true,
-      data: {
-        ...app.waService.getConnectionStatus(),
-        uptime: process.uptime(),
-      },
-    }
-  })
+  app.get('/health', healthController)
 }
 
 export default healthRoute
