@@ -13,8 +13,15 @@ export async function messageController(
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to send message'
+    const normalizedMessage = message.toLowerCase()
     const isNotFound = message === 'Number is not registered on WhatsApp'
-    const isDisconnected = message === 'WhatsApp is not connected'
+    const isDisconnected =
+      message === 'WhatsApp is not connected' ||
+      normalizedMessage.includes('timed out') ||
+      normalizedMessage.includes('timeout') ||
+      normalizedMessage.includes('connection closed') ||
+      normalizedMessage.includes('stream errored out') ||
+      normalizedMessage.includes('connection terminated')
 
     return reply.status(isNotFound ? 422 : isDisconnected ? 503 : 500).send({
       success: false,

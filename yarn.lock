@@ -367,6 +367,11 @@
   dependencies:
     undici-types "~6.21.0"
 
+"@types/qrcode-terminal@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@types/qrcode-terminal/-/qrcode-terminal-0.12.2.tgz#8d7de3aa41f2d3c724bbc74a157ef3209abf8c75"
+  integrity sha512-v+RcIEJ+Uhd6ygSQ0u5YYY7ZM+la7GgPbs0V/7l/kFs2uO4S8BcIUEMoP7za4DNIqNnUD5npf0A/7kBhrCKG5Q==
+
 "@typescript-eslint/eslint-plugin@^8.37.0":
   version "8.62.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.62.1.tgz#1736dcdca6cae3359d818456a47d18b674761f7f"
@@ -1367,6 +1372,11 @@ qoa-format@^1.0.1:
   integrity sha512-dMB0Z6XQjdpz/Cw4Rf6RiBpQvUSPCfYlQMWvmuWlWkAT7nDQD29cVZ1SwDUB6DYJSitHENwbt90lqfI+7bvMcw==
   dependencies:
     "@thi.ng/bitstream" "^2.2.12"
+
+qrcode-terminal@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
+  integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
 
 quick-format-unescaped@^4.0.3:
   version "4.0.4"

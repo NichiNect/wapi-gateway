@@ -25,6 +25,9 @@ export const config = {
   },
   whatsapp: {
     authPath: process.env.WA_AUTH_PATH ?? './auth/baileys_auth_info',
+    typingDelay: toBoolean(process.env.WA_TYPING_DELAY, false),
+    typingMinMs: toNumber(process.env.WA_TYPING_MIN_MS, 3000),
+    sendTimeoutMs: toNumber(process.env.WA_SEND_TIMEOUT_MS, 15000),
   },
   telegram: {
     enabled: toBoolean(process.env.TELEGRAM_ENABLED, false),
