@@ -1,4 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
+import { logoutController } from '../controllers/logout.controller.js'
 import { mediaUploadController, mediaUrlController } from '../controllers/media.controller.js'
 import { messageController } from '../controllers/message.controller.js'
 import { statusController } from '../controllers/status.controller.js'
@@ -84,6 +85,7 @@ const apiRoute: FastifyPluginAsync = async (app) => {
   }, mediaUrlController)
 
   app.post('/media', mediaUploadController)
+  app.post('/logout', logoutController)
 }
 
 export default apiRoute

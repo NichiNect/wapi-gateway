@@ -74,7 +74,7 @@ wapi-gateway/
 ### Routing Convention
 
 - `GET /health` diregister di `src/routes/health.route.ts` tanpa auth.
-- Semua endpoint `/api/*` diregister terpusat di `src/routes/api.ts`.
+- Semua endpoint `/api/*` diregister terpusat di `src/routes/api.ts`, termasuk endpoint logout sesi.
 - Middleware `authHook` dipasang sekali di `routes/api.ts` pada level group.
 - Logic handler dipindah ke folder `src/controllers`.
 
@@ -285,10 +285,15 @@ Untuk `document`, `filename` wajib ada.
 - Mapping error konsisten ke response contract.
 
 ### media.controller.ts
-- `mediaUrlController()` untuk body JSON.
-- `mediaUploadController()` untuk multipart.
-- Validasi `type`, `number`, dan `filename` untuk document.
-- Ubah file upload menjadi `Buffer` sebelum dikirim ke service.
+- mediaUrlController() untuk body JSON.
+- mediaUploadController() untuk multipart.
+- Validasi 	ype, 
+umber, dan ilename untuk document.
+- Ubah file upload menjadi Buffer sebelum dikirim ke service.
+
+### logout.controller.ts
+- Panggil logoutAndClearAuth() dari service.
+- Return status sukses setelah sesi logout dan auth state dihapus.
 
 ---
 
@@ -330,3 +335,4 @@ JID personal selalu berbentuk:
 - Jangan crash app jika Telegram gagal mengirim notifikasi.
 - Graceful shutdown harus memanggil `waService.disconnect()`.
 - `routes/api.ts` adalah satu-satunya entry register untuk endpoint API terautentikasi.
+

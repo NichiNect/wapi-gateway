@@ -230,6 +230,25 @@ Content-Type: multipart/form-data
 
 ---
 
+### Logout WhatsApp Session
+
+`http
+POST /api/logout
+Authorization: Bearer <API_KEY>
+` 
+
+**Success Response** 200:
+`json
+{
+  "success": true,
+  "data": {
+    "loggedOut": true,
+    "authCleared": true,
+    "message": "WhatsApp session logged out and auth cleared"
+  }
+}
+` 
+
 ### Kirim Media (via URL)
 
 ```http
@@ -342,3 +361,4 @@ Nomor WhatsApp harus dalam format **internasional tanpa `+`**:
 ## 📄 License
 
 ISC
+

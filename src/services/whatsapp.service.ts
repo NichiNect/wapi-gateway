@@ -191,6 +191,29 @@ export class WhatsAppService {
     })
   }
 
+  async logoutAndClearAuth(): Promise<void> {
+    this.isShuttingDown = true
+    this.connectionStatus = 'disconnected'
+    this.userId = null
+
+    const currentSocket = this.sock
+    this.sock = null
+
+    if (currentSocket) {
+      try {
+        await currentSocket.logout()
+      } catch {
+        currentSocket.end(undefined)
+      }
+    }
+
+    rmSync(config.whatsapp.authPath, { recursive: true, force: true })
+    await this.telegram.sendAlert('WhatsApp session logged out and auth cleared')
+
+    this.isShuttingDown = false
+    await this.init()
+  }
+
   getConnectionStatus(): { status: ConnectionStatus; user: string | null } {
     return {
       status: this.connectionStatus,
