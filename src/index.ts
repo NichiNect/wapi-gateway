@@ -23,6 +23,16 @@ process.on('unhandledRejection', (reason) => {
   void shutdown(reason)
 })
 
+process.on('SIGTERM', () => {
+  app.log.info('Received SIGTERM, shutting down gracefully')
+  void shutdown()
+})
+
+process.on('SIGINT', () => {
+  app.log.info('Received SIGINT, shutting down gracefully')
+  void shutdown()
+})
+
 try {
   await app.listen({
     port: config.app.port,

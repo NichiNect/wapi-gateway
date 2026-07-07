@@ -1,4 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
+import { config } from '../config/env.js'
 
 export async function healthController(request: FastifyRequest, reply: FastifyReply) {
   return reply.send({
@@ -6,6 +7,7 @@ export async function healthController(request: FastifyRequest, reply: FastifyRe
     data: {
       ...request.server.waService.getConnectionStatus(),
       uptime: process.uptime(),
+      telegram: config.telegram.enabled
     },
   })
 }
